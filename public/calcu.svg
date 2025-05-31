@@ -1,0 +1,28 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="64"
+  height="64"
+  viewBox="0 0 64 64"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- Cuerpo -->
+  <rect x="12" y="8" width="40" height="48" rx="6" ry="6" fill="#4A90E2" />
+
+  <!-- Pantalla -->
+  <rect x="18" y="14" width="28" height="12" rx="2" ry="2" fill="#fff" />
+
+  <!-- Botones -->
+  <circle cx="20" cy="36" r="3" fill="#fff" />
+  <circle cx="30" cy="36" r="3" fill="#fff" />
+  <circle cx="40" cy="36" r="3" fill="#fff" />
+  <circle cx="20" cy="46" r="3" fill="#fff" />
+  <circle cx="30" cy="46" r="3" fill="#fff" />
+  <circle cx="40" cy="46" r="3" fill="#fff" />
+
+  <!-- Línea división entre pantalla y botones -->
+  <line x1="12" y1="32" x2="52" y2="32" stroke="#fff" stroke-width="1" />
+</svg>

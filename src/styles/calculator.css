@@ -1,0 +1,284 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calculator-container {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+}
+
+.calculator-header {
+  text-align: center;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.calculator-header h1 {
+  margin: 0 0 8px 0;
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.calculator-header p {
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+.calculator-wrapper {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.display-container {
+  background: #000;
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: right;
+  position: relative;
+  overflow: hidden;
+}
+
+.display-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  z-index: -1;
+}
+
+.display-secondary {
+  color: #888;
+  font-size: 0.9rem;
+  font-weight: 300;
+  margin-bottom: 4px;
+  min-height: 20px;
+  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+}
+
+.display-main {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 200;
+  line-height: 1;
+  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+  letter-spacing: -1px;
+}
+
+.calculator-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.btn {
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: 400;
+  height: 70px;
+  width: 70px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.btn:hover::before {
+  opacity: 1;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn-number {
+  background: #f8f9fa;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.btn-number:hover {
+  background: #e9ecef;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.btn-operator {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(238, 90, 82, 0.3);
+}
+
+.btn-operator:hover {
+  background: linear-gradient(135deg, #ff5252 0%, #e53935 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(238, 90, 82, 0.4);
+}
+
+.btn-function {
+  background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(9, 132, 227, 0.3);
+}
+
+.btn-function:hover {
+  background: linear-gradient(135deg, #0984e3 0%, #0770c4 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(9, 132, 227, 0.4);
+}
+
+.btn-clear {
+  background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+  box-shadow: 0 4px 8px rgba(232, 67, 147, 0.3);
+}
+
+.btn-clear:hover {
+  background: linear-gradient(135deg, #e84393 0%, #d63384 100%);
+  box-shadow: 0 6px 12px rgba(232, 67, 147, 0.4);
+}
+
+.btn-equals {
+  background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+  color: white;
+  font-weight: 600;
+  font-size: 1.8rem;
+  box-shadow: 0 4px 8px rgba(0, 160, 133, 0.3);
+}
+
+.btn-equals:hover {
+  background: linear-gradient(135deg, #00a085 0%, #008f72 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(0, 160, 133, 0.4);
+}
+
+.btn-zero {
+  grid-column: span 1;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .calculator-container {
+    padding: 16px;
+  }
+
+  .calculator-wrapper {
+    padding: 20px;
+  }
+
+  .btn {
+    height: 60px;
+    width: 60px;
+    font-size: 1.3rem;
+  }
+
+  .display-main {
+    font-size: 2rem;
+  }
+
+  .calculator-header h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .btn {
+    height: 55px;
+    width: 55px;
+    font-size: 1.2rem;
+  }
+
+  .calculator-grid {
+    gap: 10px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .calculator-wrapper {
+    background: rgba(30, 30, 30, 0.95);
+  }
+
+  .btn-number {
+    background: #2d3748;
+    color: #e2e8f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-number:hover {
+    background: #4a5568;
+  }
+}
+
+/* Accessibility improvements */
+.btn:focus {
+  outline: 3px solid #4299e1;
+  outline-offset: 2px;
+}
+
+.btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Animation for button press */
+@keyframes buttonPress {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn:active {
+  animation: buttonPress 0.1s ease;
+}
+
