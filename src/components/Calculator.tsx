@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useDisplayValue } from "../hooks/useDisplayValue"
 import "../styles/calculator.css"
 import { operate } from "../utils/operate"
@@ -8,7 +8,6 @@ function Calculator() {
   const [result, setResult] = useState(0)
   const [operator, setOperator] = useState("")
   const [operable, setOperable] = useState(0)
-  const [show, setShow] = useState("")
 
 
   function nbutton(n: number) {
