@@ -2,6 +2,11 @@ import { useState } from "react"
 import { useDisplayValue } from "../hooks/useDisplayValue"
 import "../styles/calculator.css"
 import { operate } from "../utils/operate"
+import { NumberButton } from './NumberButton'
+import { FunctionButton } from "./FunctionButton"
+import { OperatorButton } from "./OperatorButton"
+import { Display } from './Display'
+import { SpecialButton } from "./SpecialButton"
 
 
 function Calculator() {
@@ -39,140 +44,56 @@ function Calculator() {
       </div>
 
       <div className="calculator-wrapper">
-        <div className="display-container">
-          <div className="display-secondary">{operator && `${result} ${operator} ${operable || ""}`}</div>
-          <div className="display-main">{displayValue || "0"}</div>
-        </div>
-
+        <Display
+          value={displayValue}
+          secondary={operator && `${result} ${operator} ${operable || ""}`}
+        />
         <div className="calculator-grid">
-          <button
-            className="btn btn-function btn-clear"
-            onClick={() => {
-              setOperator(() => "")
-              setResult(0)
-              setOperable(0)
-            }}
-          >
-            AC
-          </button>
-          <button className="btn btn-function" onClick={() => setOperator(() => "**")}>
-            x²
-          </button>
-          <button className="btn btn-function" onClick={() => setOperator(() => "sqrt")}>
-            √
-          </button>
-          <button className="btn btn-operator" onClick={() => setOperator(() => "/")}>
-            ÷
-          </button>
+        <SpecialButton
+          symbol="AC"
+          extraClass="btn-function btn-clear"
+          onClick={() => {
+            setOperator("")
+            setResult(0)
+            setOperable(0)
+          }}
+        />
+          <FunctionButton symbol="x²" onClick={() => setOperator("**")} />
+          <FunctionButton symbol="√" onClick={() => setOperator("sqrt")} />
 
-          <button
-            className="btn btn-number"
-            onClick={() => {
-              nbutton(7)
-            }}
-          >
-            7
-          </button>
-          <button
-            className="btn btn-number"
-            onClick={() => {
-              nbutton(8)
-            }}
-          >
-            8
-          </button>
-          <button
-            className="btn btn-number"
-            onClick={() => {
-              nbutton(9)
-            }}
-          >
-            9
-          </button>
-          <button className="btn btn-operator" onClick={() => setOperator(() => "*")}>
-            ×
-          </button>
+          <OperatorButton symbol="÷" onClick={() => setOperator("/")} />
 
-          <button
-            className="btn btn-number"
-            onClick={() => {
-              nbutton(4)
-            }}
-          >
-            4
-          </button>
-          <button
-            className="btn btn-number"
-            onClick={() => {
-              nbutton(5)
-            }}
-          >
-            5
-          </button>
-          <button
-            className="btn btn-number"
-            onClick={() => {
-              nbutton(6)
-            }}
-          >
-            6
-          </button>
-          <button className="btn btn-operator" onClick={() => setOperator(() => "-")}>
-            −
-          </button>
+          <NumberButton n={7} onClick={nbutton} />
+          <NumberButton n={8} onClick={nbutton} />
+          <NumberButton n={9} onClick={nbutton} />
 
-          <button
-            className="btn btn-number"
-            onClick={() => {
-              nbutton(1)
-            }}
-          >
-            1
-          </button>
-          <button
-            className="btn btn-number"
-            onClick={() => {
-              nbutton(2)
-            }}
-          >
-            2
-          </button>
-          <button
-            className="btn btn-number"
-            onClick={() => {
-              nbutton(3)
-            }}
-          >
-            3
-          </button>
-          <button className="btn btn-operator" onClick={() => setOperator(() => "+")}>
-            +
-          </button>
+          <OperatorButton symbol="×" onClick={() => setOperator("*")} />
 
-          <button
-            className="btn btn-number btn-zero"
-            onClick={() => {
-              nbutton(0)
-            }}
-          >
-            0
-          </button>
-          <button className="btn btn-function" onClick={() => setOperator(() => "%")}>
-            %
-          </button>
-          <button className="btn btn-function" onClick={() => setOperator(() => "+/-")}>
-            ±
-          </button>
-          <button
-            className="btn btn-equals"
+          <NumberButton n={4} onClick={nbutton} />
+          <NumberButton n={5} onClick={nbutton} />
+          <NumberButton n={6} onClick={nbutton} />
+
+          <OperatorButton symbol="−" onClick={() => setOperator("-")} />
+
+          <NumberButton n={1} onClick={nbutton} />
+          <NumberButton n={2} onClick={nbutton} />
+          <NumberButton n={3} onClick={nbutton} />
+
+          <OperatorButton symbol="+" onClick={() => setOperator("+")} />
+
+          <NumberButton n={0} onClick={nbutton}/>
+
+          <FunctionButton symbol="%" onClick={() => setOperator("%")} />
+          <FunctionButton symbol="±" onClick={() => setOperator("+/-")} />
+          <SpecialButton
+            symbol="="
+            extraClass="btn-equals"
             onClick={() => {
               setResult(operate(operable, operator, result))
               setOperable(0)
               setOperator("")
             }}
-          >
-            =
-          </button>
+          />
         </div>
       </div>
     </div>
